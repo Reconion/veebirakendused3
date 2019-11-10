@@ -6,7 +6,7 @@
         <section id="container">
             <section id="main">
                 <div class="content">
-                    <div id="profile-container" class="tab active">
+                    <div id="profile-container" ref="profile-container" class="tab active">
                         <div id="profile">
                             <div class="avatar">
                                 <img src="./assets/me.png" id="picture" alt="My picture">
@@ -24,7 +24,7 @@
                             <div class="clear-fix"></div>
                         </div>
                     </div>
-                    <div id="courses-container" class="tab">
+                    <div id="courses-container" ref="courses-container" class="tab">
                         <h1 class="title">Courses</h1>
                         <table id="courses">
                             <thead>
@@ -77,8 +77,8 @@
                     </div>
                 </div>
                 <div class="controls">
-                    <button id="profile-button" class="pill active">Profile</button>
-                    <button id="courses-button" class="pill">Courses</button>
+                    <button id="profile-button" ref="profile-button" class="pill active" v-on:click="toggle('profile')">Profile</button>
+                    <button id="courses-button" ref="courses-button" class="pill" v-on:click="toggle('courses')">Courses</button>
                 </div>
             </section>
         </section>
@@ -99,7 +99,22 @@
 
     export default {
         name: 'app',
-        components: {}
+        components: {},
+        methods: {
+            toggle: function (element_to_show) {
+                if (element_to_show === ('profile')) {
+                    this.$refs['courses-container'].classList.remove('active');
+                    this.$refs['courses-button'].classList.remove('active');
+                    this.$refs['profile-container'].classList.add('active');
+                    this.$refs['profile-button'].classList.add('active');
+                } else {
+                    this.$refs['profile-container'].classList.remove('active');
+                    this.$refs['profile-button'].classList.remove('active');
+                    this.$refs['courses-container'].classList.add('active');
+                    this.$refs['courses-button'].classList.add('active');
+                }
+            }
+        }
     }
 </script>
 
