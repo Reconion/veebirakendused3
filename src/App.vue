@@ -1,3 +1,4 @@
+<!-- 1 COMPONENT -->
 <template>
     <main id="app">
         <header>
@@ -95,6 +96,7 @@
     </main>
 </template>
 
+<!-- 2 COMPONENT -->
 <script>
 
     export default {
