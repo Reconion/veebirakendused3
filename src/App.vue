@@ -1,3 +1,4 @@
+<!-- 1 COMPONENT -->
 <template>
     <main id="app">
         <header>
@@ -77,8 +78,8 @@
                     </div>
                 </div>
                 <div class="controls">
-                    <button id="profile-button" class="pill active">Profile</button>
-                    <button id="courses-button" class="pill">Courses</button>
+                    <button id="profile-button" class="pill active" @click="switchTab($event)">Profile</button>
+                    <button id="courses-button" class="pill" @click="switchTab($event)">Courses</button>
                 </div>
             </section>
         </section>
@@ -95,13 +96,27 @@
     </main>
 </template>
 
+<!-- 2 COMPONENT -->
 <script>
-
     export default {
         name: 'app',
         components: {}
     }
+    methods: {
+        handleClick: switchTab();{
+        $(this).addClass("active");
+        $(this).parent().children("button").not(this).removeClass("active");
+        //change active div
+        const contentIdString = this.id.split("-")[0];
+        const content = $("[id^=" + contentIdString + "]");
+        content.addClass("active");
+        content.parent().children("div").not(content).removeClass("active");
+    }
+    }
+
 </script>
+
+
 
 <style>
     * {
