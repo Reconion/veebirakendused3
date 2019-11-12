@@ -16,7 +16,7 @@
         <br>
         <div>
 
-            <AddCourse/>
+            <AddCourse v-on:addCourse="addCourse($event)"/>
 
         </div>
     </span>
@@ -34,6 +34,11 @@
         props: {
             courses: Array
         },
+        methods: {
+            addCourse: function (data) {
+                this.$emit('addCourse', data)
+            }
+        }
     }
 </script>
 

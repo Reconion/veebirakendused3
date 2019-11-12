@@ -30,14 +30,14 @@
                 this.$refs['addItem'].style.display = 'inline'
             },
             addCourses: function(){
-                this.App.methods.addCourse(this.course, this.semester, this.grade)
+                this.$emit('addCourse', this.course, this.semester, this.grade)
             },
             clear: function () {
                 this.$refs['addItem'].style.display = 'none';
                 this.course = "";
                 this.semester = null;
                 this.grade = null;
-            }
+            },
         }
     }
 </script>
