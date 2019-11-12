@@ -27,7 +27,7 @@
                     </div>
                     <div id="courses-container" ref="courses-container" class="tab">
 
-                    <CourseTab v-bind:courses="courses"/>
+                    <CourseTab v-bind:courses="courses" v-on:addCourse="addCourse($event)"/>
 
                     </div>
                 </div>
@@ -102,6 +102,9 @@ import CourseTab from './components/CoursesTab'
                     this.$refs['courses-container'].classList.add('active');
                     this.$refs['courses-button'].classList.add('active');
                 }
+            },
+            addCourse: function (data) {
+                this.courses.push({id:this.courses.length+1, title: data.title, semester: data.semester, grade: data.grade});
             }
         }
     }

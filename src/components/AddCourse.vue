@@ -2,23 +2,42 @@
     <span>
     <button id="add-course-button" class="blue-button" v-on:click="showForm">+</button>
     <span id="add-course" ref="addItem">
-        <input class="input" type="text" placeholder="Course title" id="title">
-        <input class="input" type="number" min="1" max="8" placeholder="Semester" id="semester">
-        <input class="input" type="number" min="0" max="100" placeholder="Grade" id="grade">
-        <button class="green-button" id="save-course">Save</button>
-        <button class="grey-button" id="cancel-course">Cancel</button>
+        <input class="input" type="text" placeholder="Course title" id="title" v-model="course">
+        <input class="input" type="number" min="1" max="8" placeholder="Semester" id="semester" v-model="semester">
+        <input class="input" type="number" min="0" max="100" placeholder="Grade" id="grade" v-model="grade">
+        <button class="green-button" id="save-course" @click="addCourses">Save</button>
+        <button class="grey-button" id="cancel-course" @click="clear">Cancel</button>
     </span>
     </span>
 </template>
 <script>
+
+
     export default {
         name: 'AddCourse',
+
+        data: () => {
+            return{
+                course: "",
+                semester: null,
+                grade: null
+            }
+        },
         props: {
         },
         methods: {
             showForm: function () {
                 this.$refs['addItem'].style.display = 'inline'
-            }
+            },
+            addCourses: function(){
+                this.$emit('addCourse', {title:this.course, semester:this.semester, grade:this.grade})
+            },
+            clear: function () {
+                this.$refs['addItem'].style.display = 'none';
+                this.course = "";
+                this.semester = null;
+                this.grade = null;
+            },
         }
     }
 </script>
