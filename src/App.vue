@@ -105,11 +105,7 @@ import CourseTab from './components/CoursesTab'
             },
             addCourse: function (data) {
                 this.courses.push(data);
-            }
-        },
-        events: {
-            addCourse: function (name, semester, grade) {
-                this.courses.push({id:this.courses.length+1, title:name, semester:semester, grade:grade});
+                alert("dsa")
             }
         }
     }
