@@ -102,6 +102,9 @@ import CourseTab from './components/CoursesTab'
                     this.$refs['courses-container'].classList.add('active');
                     this.$refs['courses-button'].classList.add('active');
                 }
+            },
+            addCourse: function (name, semester, grade) {
+                this.courses.push({id:this.courses.length+1, title:name, semester:semester, grade:grade});
             }
         }
     }

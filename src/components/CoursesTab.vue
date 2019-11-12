@@ -16,7 +16,7 @@
         <br>
         <div>
 
-            <AddCourse />
+            <AddCourse/>
 
         </div>
     </span>
