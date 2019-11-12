@@ -30,7 +30,7 @@
                 this.$refs['addItem'].style.display = 'inline'
             },
             addCourses: function(){
-                this.$emit('addCourse', this.course, this.semester, this.grade)
+                this.$emit('addCourse', {title:this.course, semester:this.semester, grade:this.grade})
             },
             clear: function () {
                 this.$refs['addItem'].style.display = 'none';
