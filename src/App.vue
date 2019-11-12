@@ -26,51 +26,9 @@
                         </div>
                     </div>
                     <div id="courses-container" ref="courses-container" class="tab">
-                        <h1 class="title">Courses</h1>
-                        <table id="courses">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Course Title</th>
-                                <th>Semester</th>
-                                <th>Grade</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Agile software development</td>
-                                <td>1</td>
-                                <td>82</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>System modeling</td>
-                                <td>1</td>
-                                <td>85</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Object-oriented programming</td>
-                                <td>2</td>
-                                <td>99</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Estonian language Level A2</td>
-                                <td>2</td>
-                                <td>65</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <br>
-                        <br>
-                        <div>
 
-                            <AddCourse />
+                    <CourseTab v-bind:courses="courses"/>
 
-
-                        </div>
                     </div>
                 </div>
                 <div class="controls">
@@ -94,12 +52,42 @@
 
 <!-- 2 COMPONENT -->
 <script>
-import AddCourse from './components/AddCourse'
+import CourseTab from './components/CoursesTab'
 
     export default {
         name: 'app',
         components: {
-            AddCourse
+            CourseTab
+        },
+        data () {
+            return {
+                courses: [
+                    {
+                        id: 1,
+                        title: 'Agile software development',
+                        semester: 1,
+                        grade: 82
+                    },
+                    {
+                        id: 2,
+                        title: 'System modeling',
+                        semester: 1,
+                        grade: 85
+                    },
+                    {
+                        id: 3,
+                        title: 'Object-oriented programming',
+                        semester: 2,
+                        grade: 99
+                    },
+                    {
+                        id: 4,
+                        title: 'Estonian language Level A2',
+                        semester: 2,
+                        grade: 65
+                    },
+                ]
+            }
         },
         methods: {
             toggle: function (element_to_show) {
