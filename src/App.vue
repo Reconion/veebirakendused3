@@ -1,9 +1,7 @@
 <!-- 1 COMPONENT -->
 <template>
     <main id="app">
-        <header>
-            <strong>Welcome to your dashboard!</strong>
-        </header>
+        <Header/>
         <section id="container">
             <section id="main">
                 <div class="content">
@@ -26,37 +24,30 @@
                         </div>
                     </div>
                     <div id="courses-container" ref="courses-container" class="tab">
-
                     <CourseTab v-bind:courses="courses" v-on:addCourse="addCourse($event)"/>
-
                     </div>
                 </div>
                 <div class="controls">
-                    <button id="profile-button" ref="profile-button" class="pill active" v-on:click="toggle('profile')">Profile</button>
-                    <button id="courses-button" ref="courses-button" class="pill" v-on:click="toggle('courses')">Courses</button>
+                    <button id="profile-button" ref="profile-button" class="pill active" @click="toggle('profile')">Profile</button>
+                    <button id="courses-button" ref="courses-button" class="pill" @click="toggle('courses')">Courses</button>
                 </div>
             </section>
         </section>
-        <footer>
-            <ul class="links">
-                <li>
-                    <a href="https://ois2.ut.ee/" target="_blank">OIS</a>
-                </li>
-                <li>
-                    <a href="https://courses.cs.ut.ee/" target="_blank">Courses</a>
-                </li>
-            </ul>
-        </footer>
+        <Footer/>
     </main>
 </template>
 
 <!-- 2 COMPONENT -->
 <script>
     import CourseTab from './components/CoursesTab'
+    import Header from "./components/Header";
+    import Footer from "./components/Footer";
 
     export default {
         name: 'app',
         components: {
+            Footer,
+            Header,
             CourseTab
         },
         data () {
@@ -107,12 +98,27 @@
                 this.courses.push({id:this.courses.length+1, title: data.title, semester: data.semester, grade: data.grade});
             },
             getGpa: function () {
-                let gpa = 0;
-                for (let i = 0; i<this.courses.length; i++) {
-                    gpa += this.courses[i].grade
+                let gradeCount = 0;
+                for(let i = 0; i < this.courses.length; i++){
+                    let current = this.courses[i].grade;
+                    if(current > 89){
+                        gradeCount += 4;
+                    }
+                    else if(current < 90 && current > 79){
+                        gradeCount += 3;
+                    }
+                    else if(current < 80 && current > 69){
+                        gradeCount += 2;
+                    }
+                    else if(current < 70 && current > 59){
+                        gradeCount += 1;
+                    }
+                    else if(current < 60 && current > 49){
+                        gradeCount += 0.5;
+                    }
                 }
-                gpa = gpa/this.courses.length;
-                return gpa
+                let gpa = gradeCount/this.courses.length;
+                return gpa;
             }
         }
     }
@@ -140,43 +146,6 @@
 
     .clear-fix {
         clear: both;
-    }
-
-    header {
-        padding: 20px;
-        background-color: #2196F3;
-        color: #ffffff;
-        text-align: center;
-        margin-bottom: 10px;
-        height: 60px;
-    }
-
-    footer {
-        padding: 30px 0;
-        background-color: #607D8B;
-        margin-top: 10px;
-        height: 100px;
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-    }
-
-    footer .links {
-        display: block;
-        width: 100%;
-        max-width: 200px;
-        margin: 0 auto;
-        color: #acd7ff;
-        font-size: 11px;
-    }
-
-    footer .links a {
-        text-decoration: none;
-        color: #acd7ff;
-    }
-
-    footer .links a:hover {
-        text-decoration: underline;
     }
 
     #container {
