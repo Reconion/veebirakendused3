@@ -52,7 +52,7 @@
 
 <!-- 2 COMPONENT -->
 <script>
-import CourseTab from './components/CoursesTab'
+    import CourseTab from './components/CoursesTab'
 
     export default {
         name: 'app',
@@ -105,7 +105,6 @@ import CourseTab from './components/CoursesTab'
             },
             addCourse: function (data) {
                 this.courses.push({id:this.courses.length+1, title: data.title, semester: data.semester, grade: data.grade});
-                this.getGpa()
             },
             getGpa: function () {
                 let gpa = 0;
