@@ -20,7 +20,7 @@
                                 </ul>
                             </div>
                             <div id="gpa">
-                                <strong>2.75</strong>
+                                <strong>{{this.getGpa()}}</strong>
                             </div>
                             <div class="clear-fix"></div>
                         </div>
@@ -86,7 +86,7 @@ import CourseTab from './components/CoursesTab'
                         semester: 2,
                         grade: 65
                     },
-                ]
+                ],
             }
         },
         methods: {
@@ -105,6 +105,15 @@ import CourseTab from './components/CoursesTab'
             },
             addCourse: function (data) {
                 this.courses.push({id:this.courses.length+1, title: data.title, semester: data.semester, grade: data.grade});
+                this.getGpa()
+            },
+            getGpa: function () {
+                let gpa = 0;
+                for (let i = 0; i<this.courses.length; i++) {
+                    gpa += this.courses[i].grade
+                }
+                gpa = gpa/this.courses.length;
+                return gpa
             }
         }
     }
