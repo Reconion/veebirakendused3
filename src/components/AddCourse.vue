@@ -23,8 +23,6 @@
                 grade: null
             }
         },
-        props: {
-        },
         methods: {
             showForm: function () {
                 this.$refs['addItem'].style.display = 'inline'
